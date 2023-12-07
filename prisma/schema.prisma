@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model has been renamed to 'Renamedclass' during introspection, because the original name 'class' is reserved.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Renamedclass {
+  id    Int     @id @default(autoincrement())
+  name  String? @db.VarChar(255)
+  state Int?    @default(1) @db.TinyInt
+
+  @@map("class")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model student {
+  id          Int       @id @default(autoincrement())
+  name        String?   @db.VarChar(255)
+  gender      Int?      @default(1) @db.TinyInt
+  avatar      String?   @default("") @db.VarChar(255)
+  class_id    Int?
+  create_time DateTime? @db.DateTime(0)
+}
